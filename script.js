@@ -9,12 +9,11 @@ const createBoard = function() {
         if(gameBoard[position-1]=='#'){
             gameBoard[position-1] = symbol;
         }
-        else {
-            console.log("That cell is already filled. Please choose another cell.");
-        }
     }
-    const showBoard = function() {
-        return gameBoard;
+    const boardReset = function() {
+        for(let i=0;i<9;i++) {
+            gameBoard[i] = '#';
+        }
     }
     const checkBoard = function(sign) {
         let result = false;
@@ -50,30 +49,82 @@ const createBoard = function() {
         }
         return result;
     }
-    return {insertSymbol, showBoard, checkBoard}
+    return {insertSymbol, checkBoard, boardReset}
 }
 
 function createPlayer() {
-    let playerName;
-    const enterName = function(name) {
-        playerName = String(name);
+    const playerName='';
+    let isTurn = false;
+    return {playerName, isTurn}
+}
+//dom function to get names 
+function getNames(player) {
+    let name;
+    if(player==1) {
+        name = prompt("Enter first player's name:");
     }
-    const displayName = function() {
-        return playerName;
+    else {
+        name = prompt("Enter second player's name:");    
     }
-    return {enterName, displayName}
+    return name;
+}
+//dom function to change the display
+function displayPhase(player, state) {
+    if(state==0) {
+        document.querySelector(".container h1").textContent = `${player}'s turn`;
+    }
+    else if(state==1){
+        document.querySelector(".container h1").textContent = `${player} won the match!!`;
+    }
+    else {
+        document.querySelector(".container h1").textContent = `It is a draw`;
+    }
+}
+//dom function to set-up the grid each turn to get player's choice
+function getChoice(playerInTurn, turn) {
+    let grid = document.querySelector(".board");
+    grid.addEventListener('click', function input(Event) {
+        let cell = Event.target;
+        if(cell.dataset.turnnumber=='0') {
+            if(playerInTurn==1) {
+                Event.target.textContent = 'X';
+                cell.dataset.turnnumber = turn;
+            }
+            else {
+                Event.target.textContent = 'O';
+                cell.dataset.turnnumber = turn;
+            }
+            grid.removeEventListener('click', input());
+        }
+    });
+}
+//dom function to get the choice selected by the player
+function scanGrid() {
+    let result;
+    let cells = document.querySelectorAll('.cells');
+    for(let i=0;i<9;i++) {
+        if(cells[i].dataset.turnnumber==(i+1)) {
+            result = cells[i].dataset.cellnumber * 1;
+        }
+    }
+    return result;
 }
 
+
 function startGame() {
-    const {insertSymbol, showBoard, checkBoard} = createBoard();
+    const {insertSymbol, checkBoard} = createBoard();
     const player1 = createPlayer();
     const player2 = createPlayer();
     let choice, check = false;
-    console.log("Enter the players' names:");
+    player1.playerName = getNames(1);
+    player2.playerName = getNames(2);
+    
     for(let i=0;i<4;i++) {
         if(i%2==0) {
-            choice = prompt('Player 1 enter the position');
-            choice = choice * 1;
+            displayPhase(player1.playerName, 0);
+            getChoice(1, i+1);
+            //wait
+            choice = scanGrid(i+1);
             insertSymbol('X', choice);
         }
         else {
@@ -110,9 +161,10 @@ function startGame() {
     if(!check) {
         console.log('It is a draw');
     }
-    //console.log()
 }
 const game = startGame();
+
+
 //const player1 = createPlayer();
 //const player2 = createPlayer();
 //const state = createBoard();

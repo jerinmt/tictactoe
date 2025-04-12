@@ -1,5 +1,5 @@
 html {
-    font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    font-family: Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     -webkit-text-size-adjust: 100%;
 }
 * {
@@ -8,6 +8,8 @@ html {
     padding: 0;
 }
 body {
+    height: 100vh;
+    align-content: center;
     line-height: 1.3;
 }
 img, picture, video, canvas, svg {
@@ -24,4 +26,53 @@ p {
 }
 h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
+}
+.container {
+    margin: auto;
+    height: 70vh;
+    width: 40vw;
+    background-color: palevioletred;
+    border: 10px solid rgb(216, 53, 107);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.board {
+    position: relative;
+    height: 56vh;
+    width: 24vw;
+    background-color: black;
+    border: 10px solid whitesmoke;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 4px;
+}
+.cells {
+    font-size: 4rem;
+    border: 0px;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#replay {
+    background-color: rgb(147, 219, 39);
+    padding: 0;
+    border-top: 10px solid greenyellow;
+    border-left: 10px solid greenyellow;
+    border-right: 10px solid rgb(128, 190, 34);
+    border-bottom: 10px solid rgb(128, 190, 34);
+    border-radius: 5px;
+}
+#replay:active {
+    border-right: 10px solid greenyellow;
+    border-bottom: 10px solid greenyellow;
+    border-top: 10px solid rgb(128, 190, 34);
+    border-left: 10px solid rgb(128, 190, 34);
+}
+.winLine {
+    position: absolute;
+    visibility: hidden;
 }
