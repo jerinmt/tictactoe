@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./script2.js" defer></script>
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -20,8 +20,15 @@
             <button type="button" class="cells" data-cellnumber="7"></button>
             <button type="button" class="cells" data-cellnumber="8"></button>
             <button type="button" class="cells" data-cellnumber="9"></button>
-            <svg class = "winLine" width = "300" height = "300" xmlns = "http://www.w3.org/2000/svg">
-                <line x1="30" y1="30" x2="265" y2="265" stroke="black" stroke-width="3" />
+            <svg width = "100%" height = "100%" xmlns = "http://www.w3.org/2000/svg">
+                <line id="line1" x1="15%" y1="10%" x2="18%" y2="90%" stroke="black" stroke-width="3" />
+                <line id="line2" x1="50%" y1="10%" x2="53%" y2="90%" stroke="black" stroke-width="3" />
+                <line id="line3" x1="85%" y1="10%" x2="85%" y2="90%" stroke="black" stroke-width="3" />
+                <line id="line4" x1="10%" y1="15%" x2="90%" y2="12%" stroke="black" stroke-width="3" />
+                <line id="line5" x1="10%" y1="50%" x2="90%" y2="53%" stroke="black" stroke-width="3" />
+                <line id="line6" x1="10%" y1="85%" x2="90%" y2="85%" stroke="black" stroke-width="3" />
+                <line id="line7" x1="5%" y1="5%" x2="95%" y2="93%" stroke="black" stroke-width="3" />
+                <line id="line8" x1="5%" y1="92%" x2="98%" y2="5%" stroke="black" stroke-width="3" />
             </svg>
         </div>
         <p>Get 3 in a row, column or diagonal.</p>

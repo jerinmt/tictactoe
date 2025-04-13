@@ -8,3 +8,4 @@ Created the index.html, styles.css and script.js files.
 
 Made the game playable through console, the game is working. Now need to implement the UI.
 
+Completed the project, pushed to git.
