@@ -1,21 +1,16 @@
-const players = {
-    players : ['',''],
-    switchNames : function() {
-        let temp = players[1];
-        players[1] = players[0];
-        players[0] = temp;
-    },
-};
+const players = ['',''];
 
-const gameBoard = {
-    board : ['#','#','#','#','#','#','#','#','#'],
-    turn : 1,
-    setBoard : function() {
+const gameBoard = (function() {
+    const board = ['#','#','#','#','#','#','#','#','#'];
+    let turn = 1;
+    const setBoard = function() {
         for(let i=0;i<9;i++) {
-            this.board[i] = '#';
+            board[i] = '#';
         }
-    },
-};
+        console.log(board);
+    }
+    return {turn, board, setBoard}
+})();
 
 const gameLogic = function() {
     const enterSymbol = function(cell) {
@@ -31,6 +26,7 @@ const gameLogic = function() {
                 gameBoard.turn++;
             }
         }
+        console.log(gameBoard.board);
     }
     const checkBoard = function(sign) {
         let result = false;
@@ -88,9 +84,11 @@ const gameLogic = function() {
 }
 
 const gameRestart = function() {
-    //call switchname
+    //switchname
     const {restartGame} = gameLogic();
-    players.switchNames();
+    let temp = players[1];
+    players[1] = players[0];
+    players[0] = temp;
     //clear grid
     let cells = document.querySelectorAll('.cells');
     for(let i=0;i<9;i++) {
